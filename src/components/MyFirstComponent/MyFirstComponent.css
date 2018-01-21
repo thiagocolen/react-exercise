@@ -1,9 +1,9 @@
 
-
 .myFirstComponentClass {
-  border: solid 1px red;
+  border: solid 2px blueviolet;
+  padding: 10px;
 }
 
-h1 {
-  color: goldenrod;
+.myFirstComponentClass h1 {
+  color: blueviolet;
 }
