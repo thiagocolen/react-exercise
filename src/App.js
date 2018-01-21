@@ -1,33 +1,64 @@
 import React, { Component } from 'react'
 import { BrowserRouter, Route, Link } from 'react-router-dom'
+
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import AppBar from 'material-ui/AppBar';
+import Drawer from 'material-ui/Drawer';
+import MenuItem from 'material-ui/MenuItem';
+
+import MyFirstComponent from './components/MyFirstComponent/MyFirstComponent'
+import Map from './components/Map/Map'
 import './App.css'
-
-import MyFirstComponent
-  from './components/MyFirstComponent/MyFirstComponent'
-
-import Map 
-  from './components/Map/Map'
-
 
 
 class App extends Component {
+  
+  constructor(props) {
+    super(props);
+    this.state = {open: false};
+  }
+
+  handleToggle = () => this.setState({open: !this.state.open});
+  handleClose = () => this.setState({open: false});
+
+  vasefudeporra = () => { console.log('vasefudeporra'); }
+  
   render() {
     return (
-      <BrowserRouter>  
-        <div>
-          <Link to={'/link1'}><h1>link1</h1></Link>
-          <Link to={'/link2'}><h1>link2</h1></Link>
-          <hr/>
-          <Route path="/link1" component={MyFirstComponent} />
-          <Route path="/link2" component={myMap} />
+      <MuiThemeProvider>
+        <BrowserRouter>  
+          <div>
+            <AppBar 
+              title="React Exercise" 
+              onLeftIconButtonClick={this.handleToggle}
+            />
 
+            <Drawer
+              docked={false}
+              width={300}
+              open={this.state.open}
+              onRequestChange={(open) => this.setState({open})}
+            >
+              <Link to={'/'}><MenuItem onClick={this.handleClose}>Home</MenuItem></Link>            
+              <Link to={'/link1'}><MenuItem onClick={this.handleClose}>My First Component</MenuItem></Link>
+              <Link to={'/link2'}><MenuItem onClick={this.handleClose}>Map Component</MenuItem></Link>
+            </Drawer>
 
-        </div>
-      </BrowserRouter>
+            <Route exact path="/" component={wellcome}/>
+            <Route path="/link1" component={MyFirstComponent} />
+            <Route path="/link2" component={myMap} />
+          </div>
+        </BrowserRouter>
+      </MuiThemeProvider>
     );
   }
 }
 
+const wellcome = () => {
+  return (
+    <h1>Wellcome</h1>
+  )
+}
 
 const myMap = ({match}) => {
   return(
@@ -41,5 +72,3 @@ const myMap = ({match}) => {
 }
 
 export default App
-
-
