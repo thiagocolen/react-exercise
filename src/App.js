@@ -2,13 +2,29 @@ import React, { Component } from 'react'
 import { BrowserRouter, Route, Link } from 'react-router-dom'
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import AppBar from 'material-ui/AppBar';
-import Drawer from 'material-ui/Drawer';
-import MenuItem from 'material-ui/MenuItem';
+import AppBar from 'material-ui/AppBar'
+import Drawer from 'material-ui/Drawer'
+import MenuItem from 'material-ui/MenuItem'
 
 import MyFirstComponent from './components/MyFirstComponent/MyFirstComponent'
 import Map from './components/Map/Map'
 import './App.css'
+import * as firebase from 'firebase'
+
+var config = {
+  apiKey: "AIzaSyCA7zQkRM4WxQjpsdsujnLxl7IPBgTZxrc",
+  authDomain: "fir-samples.firebaseapp.com",
+  databaseURL: "https://fir-samples.firebaseio.com",
+  projectId: "fir-samples",
+  storageBucket: "fir-samples.appspot.com",
+  messagingSenderId: "650933171461"
+}
+
+firebase.initializeApp(config)
+
+firebase.database().ref('/users/').once('value').then(function(snapshot) {
+  console.log(snapshot.val().gRLIkOlNbNOdTZOuMlA1N5Tij4e2.username)
+});
 
 
 class App extends Component {
