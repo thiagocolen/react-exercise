@@ -7,38 +7,24 @@ import Drawer from 'material-ui/Drawer'
 import MenuItem from 'material-ui/MenuItem'
 
 import MyFirstComponent from './components/MyFirstComponent/MyFirstComponent'
-import Map from './components/Map/Map'
+import MapWithAMarker from './components/Map/MapWithAMarker'
+import GMap from './components/Map/GMap'
 import './App.css'
-import * as firebase from 'firebase'
-
-var config = {
-  apiKey: "AIzaSyCA7zQkRM4WxQjpsdsujnLxl7IPBgTZxrc",
-  authDomain: "fir-samples.firebaseapp.com",
-  databaseURL: "https://fir-samples.firebaseio.com",
-  projectId: "fir-samples",
-  storageBucket: "fir-samples.appspot.com",
-  messagingSenderId: "650933171461"
-}
-
-firebase.initializeApp(config)
-
-firebase.database().ref('/users/').once('value').then(function(snapshot) {
-  console.log(snapshot.val().gRLIkOlNbNOdTZOuMlA1N5Tij4e2.username)
-});
 
 
 class App extends Component {
   
   constructor(props) {
     super(props);
-    this.state = {open: false};
+    this.state = {
+      open: false,
+      total: 10
+    };
   }
 
   handleToggle = () => this.setState({open: !this.state.open});
   handleClose = () => this.setState({open: false});
 
-  vasefudeporra = () => { console.log('vasefudeporra'); }
-  
   render() {
     return (
       <MuiThemeProvider>
@@ -61,8 +47,8 @@ class App extends Component {
             </Drawer>
 
             <Route exact path="/" component={wellcome}/>
-            <Route path="/link1" component={MyFirstComponent} />
-            <Route path="/link2" component={myMap} />
+            <Route path="/link1" component={link1Component} />
+            <Route path="/link2" component={GMap} />
           </div>
         </BrowserRouter>
       </MuiThemeProvider>
@@ -70,21 +56,16 @@ class App extends Component {
   }
 }
 
+const link1Component = ({ match }) => (
+  <MyFirstComponent />
+)
+
+
 const wellcome = () => {
   return (
     <h1>Wellcome</h1>
   )
 }
 
-const myMap = ({match}) => {
-  return(
-    <Map
-      googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCv0MDuPwY5ruP5YWb9fvdaT0Ha63fhSN8&v=3.exp&libraries=geometry,drawing,places"
-      loadingElement={<div style={{ height: `100%` }} />}
-      containerElement={<div style={{ height: `400px` }} />}
-      mapElement={<div style={{ height: `100%` }} />}
-    />
-  )
-}
 
 export default App
