@@ -57,7 +57,7 @@ class App extends Component {
 }
 
 const link1Component = ({ match }) => (
-  <MyFirstComponent />
+  <MyFirstComponent teste="testeProp" />
 )
 
 

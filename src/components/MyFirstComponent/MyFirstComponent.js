@@ -12,36 +12,26 @@ class MyFirstComponent extends Component {
       places: []
     }
   }
-  
+
   componentDidMount() {
+    console.log('componentDidMount');
+  }
 
-    this.firebaseRef = firebase.database().ref('places/');
 
-    let log = this.firebaseRef.once
-    console.log(log);
+  componentWillMount () {
+    console.log('componentWillMount');
+    let teste = firebase.database().ref('places/');
 
-    this.firebaseRef.on("child_added", function(dataSnapshot) {
+    teste.limitToLast(25).on('value', function(dataSnapshot) {
+      var items = [];
+      dataSnapshot.forEach(function(childSnapshot) {
+        items.push(childSnapshot.val());
+      });
 
-      console.log(dataSnapshot.val())
-      // this.items.push(dataSnapshot.val());
-      // this.setState({
-      //   items: this.items
-      // });
-
+      this.setState({
+        places: items
+      });
     }.bind(this));
-
-
-        
-    // firebase.database().ref('places/').push().set({
-    //   username: 'thiago',
-    //   email: 'thiagomail'
-    // });
-
-  
-    // firebase.database().ref('/places/').once('value').then(function(snapshot) {
-    //   let teste = snapshot.val()
-    //   console.log(teste)
-    // });    
   }
 
 
@@ -50,12 +40,30 @@ class MyFirstComponent extends Component {
       <div>
         <div className="myFirstComponentClass">
           <h1>My First Component</h1>
-          {/* <h2>{this.state.total}</h2> */}
-          <h2>{this.props.teste}</h2>      
+          <h2>this.props.teste: {this.props.teste}</h2>
+
+         <List items={this.state.places} />
+
         </div>
       </div>
     );
   }
 }
+
+
+const List = (props) => {
+
+  const listItems = props.items.map((item, index) =>
+    <li key={index}>
+      <h2>{item.email}</h2>
+      <h3>{item.username}</h3>
+    </li>
+  );
+
+  return (
+    <ul>{listItems}</ul>
+  )
+}
+
 
 export default MyFirstComponent;
