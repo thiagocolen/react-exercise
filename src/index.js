@@ -15,9 +15,9 @@ var config = {
   messagingSenderId: "650933171461"
 }
 firebase.initializeApp(config)
-firebase.database().ref('/users/').once('value').then(function(snapshot) {
-  console.log(snapshot.val().gRLIkOlNbNOdTZOuMlA1N5Tij4e2.username)
-});
+// firebase.database().ref('/users/').once('value').then(function(snapshot) {
+//   console.log(snapshot.val().gRLIkOlNbNOdTZOuMlA1N5Tij4e2.username)
+// });
 
 
 ReactDOM.render(<App />, document.getElementById('root'));

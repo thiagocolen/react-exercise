@@ -9,6 +9,7 @@ import MenuItem from 'material-ui/MenuItem'
 import MyFirstComponent from './components/MyFirstComponent/MyFirstComponent'
 import MapWithAMarker from './components/Map/MapWithAMarker'
 import GMap from './components/Map/GMap'
+import MyGMapComponent from './components/MyGMapComponent/MyGMapComponent'
 import './App.css'
 
 
@@ -44,11 +45,13 @@ class App extends Component {
               <Link to={'/'}><MenuItem onClick={this.handleClose}>Home</MenuItem></Link>            
               <Link to={'/link1'}><MenuItem onClick={this.handleClose}>My First Component</MenuItem></Link>
               <Link to={'/link2'}><MenuItem onClick={this.handleClose}>Map Component</MenuItem></Link>
+              <Link to={'/link3'}><MenuItem onClick={this.handleClose}>My GMap Component</MenuItem></Link>
             </Drawer>
 
             <Route exact path="/" component={wellcome}/>
             <Route path="/link1" component={link1Component} />
             <Route path="/link2" component={GMap} />
+            <Route path="/link3" component={MyGMapComponent} />
           </div>
         </BrowserRouter>
       </MuiThemeProvider>
