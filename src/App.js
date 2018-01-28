@@ -36,7 +36,7 @@ class App extends Component {
 
             <Drawer
               docked={false}
-              width={300}
+              width={200}
               open={this.state.open}
               onRequestChange={(open) => this.setState({open})}
             >
@@ -68,8 +68,8 @@ const wellcome = () => {
 const iconStyles = {
   color: 'red',
   position: 'absolute',
-  top: '20px',
-  left: '20px',
+  top: '10px',
+  left: '10px',
   zIndex: '100',
   size: '30px'
 }

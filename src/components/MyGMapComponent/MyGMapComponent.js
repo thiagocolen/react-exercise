@@ -190,9 +190,9 @@ const autocompleteStyle = {
   padding: '10px 15px',
   fontSize: '14px', 
   position: 'absolute',
-  top: '20px',
-  width: '80%',
-  left: '10%'
+  top: '15px',
+  left: '70px',
+  right: '10px'
 }
 
 export default MyGMapComponent
