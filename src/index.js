@@ -1,10 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import * as firebase from 'firebase'
+
 import registerServiceWorker from './registerServiceWorker';
 
-import * as firebase from 'firebase'
+import App from './App';
+import './index.css';
+
 
 var config = {
   apiKey: "AIzaSyCA7zQkRM4WxQjpsdsujnLxl7IPBgTZxrc",
@@ -15,10 +17,6 @@ var config = {
   messagingSenderId: "650933171461"
 }
 firebase.initializeApp(config)
-// firebase.database().ref('/users/').once('value').then(function(snapshot) {
-//   console.log(snapshot.val().gRLIkOlNbNOdTZOuMlA1N5Tij4e2.username)
-// });
-
 
 ReactDOM.render(<App />, document.getElementById('root'));
 registerServiceWorker();
