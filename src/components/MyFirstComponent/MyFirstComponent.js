@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import './MyFirstComponent.css'
 import * as firebase from 'firebase'
-import reactfire from 'reactfire'
 
 
 class MyFirstComponent extends Component {  

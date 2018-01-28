@@ -2,15 +2,13 @@ import React, { Component } from 'react'
 import { BrowserRouter, Route, Link } from 'react-router-dom'
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import AppBar from 'material-ui/AppBar'
 import Drawer from 'material-ui/Drawer'
 import MenuItem from 'material-ui/MenuItem'
+import FontIcon from 'material-ui/FontIcon'
+import IconButton from 'material-ui/IconButton';
 
 import MyFirstComponent from './components/MyFirstComponent/MyFirstComponent'
-import MapWithAMarker from './components/Map/MapWithAMarker'
-import GMap from './components/Map/GMap'
 import MyGMapComponent from './components/MyGMapComponent/MyGMapComponent'
-import './App.css'
 
 
 class App extends Component {
@@ -30,11 +28,11 @@ class App extends Component {
     return (
       <MuiThemeProvider>
         <BrowserRouter>  
-          <div>
-            <AppBar 
-              title="React Exercise" 
-              onLeftIconButtonClick={this.handleToggle}
-            />
+          <div style={height100Style}>
+
+            <IconButton style={iconStyles} onClick={this.handleToggle}>
+              <FontIcon className="material-icons">menu</FontIcon>
+            </IconButton>
 
             <Drawer
               docked={false}
@@ -44,14 +42,12 @@ class App extends Component {
             >
               <Link to={'/'}><MenuItem onClick={this.handleClose}>Home</MenuItem></Link>            
               <Link to={'/link1'}><MenuItem onClick={this.handleClose}>My First Component</MenuItem></Link>
-              <Link to={'/link2'}><MenuItem onClick={this.handleClose}>Map Component</MenuItem></Link>
-              <Link to={'/link3'}><MenuItem onClick={this.handleClose}>My GMap Component</MenuItem></Link>
+              <Link to={'/gmap'}><MenuItem onClick={this.handleClose}>My GMap Component</MenuItem></Link>
             </Drawer>
 
             <Route exact path="/" component={wellcome}/>
             <Route path="/link1" component={link1Component} />
-            <Route path="/link2" component={GMap} />
-            <Route path="/link3" component={MyGMapComponent} />
+            <Route path="/gmap" component={MyGMapComponent} />
           </div>
         </BrowserRouter>
       </MuiThemeProvider>
@@ -59,10 +55,9 @@ class App extends Component {
   }
 }
 
-const link1Component = ({ match }) => (
+const link1Component = () => (
   <MyFirstComponent teste="testeProp" />
 )
-
 
 const wellcome = () => {
   return (
@@ -70,5 +65,17 @@ const wellcome = () => {
   )
 }
 
+const iconStyles = {
+  color: 'red',
+  position: 'absolute',
+  top: '20px',
+  left: '20px',
+  zIndex: '100',
+  size: '30px'
+}
+
+const height100Style = {
+  height: '100%'
+}
 
 export default App

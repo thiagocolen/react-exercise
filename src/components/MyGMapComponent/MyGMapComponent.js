@@ -28,7 +28,8 @@ class MyGMapComponent extends Component {
     console.log('initMap')
     this.map = new window.google.maps.Map(document.getElementById('MyGMapComponent'), {
       // center: {lat: -20.001, lng: -47.001},
-      zoom: 14
+      zoom: 14,
+      disableDefaultUI: true
     });
     
     this.initGeolocation()
@@ -85,15 +86,20 @@ class MyGMapComponent extends Component {
   fillInAddress() {
     var place = this.autocomplete.getPlace();
 
-    this.setState({
-      addressPosition: {
-        lat: place.geometry.location.lat(),
-        lng: place.geometry.location.lng()
-      }
-    });
+    console.log('fillInAddress: ', place)
+
+    if (place.geometry) {
+      this.setState({
+        addressPosition: {
+          lat: place.geometry.location.lat(),
+          lng: place.geometry.location.lng()
+        }
+      });
+    }
   }
 
   geolocate() {
+    console.log('geolocate')
     const successCallback = (position) => {
       var geolocation = {
         lat: position.coords.latitude,
@@ -164,18 +170,29 @@ class MyGMapComponent extends Component {
 
   render() {
     return(
-      <div>
-        <div id="MyGMapComponent" 
-          style={{ border:'solid 20px black', height:'600px' }}></div>
-        <br/>
+      <div style={myGMapComponentStyle}>
+        <div id="MyGMapComponent" style={myGMapComponentStyle}></div>
         <input id="autocomplete" 
           placeholder="Enter your address"
           onFocus={this.geolocate()} 
           type="text"
-          style={{ height:'30px', width:'400px' }}></input>
+          style={autocompleteStyle}></input>      
       </div>
     )
   }
+}
+
+const myGMapComponentStyle = {
+  height:'100%',
+}
+
+const autocompleteStyle = { 
+  padding: '10px 15px',
+  fontSize: '14px', 
+  position: 'absolute',
+  top: '20px',
+  width: '80%',
+  left: '10%'
 }
 
 export default MyGMapComponent
