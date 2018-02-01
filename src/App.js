@@ -9,6 +9,7 @@ import IconButton from 'material-ui/IconButton';
 
 import MyFirstComponent from './components/MyFirstComponent/MyFirstComponent'
 import MyGMapComponent from './components/MyGMapComponent/MyGMapComponent'
+import AddressRegister from './components/AddressRegister/AddressRegister'
 
 
 class App extends Component {
@@ -43,11 +44,13 @@ class App extends Component {
               <Link to={'/'}><MenuItem onClick={this.handleClose}>Home</MenuItem></Link>            
               <Link to={'/link1'}><MenuItem onClick={this.handleClose}>My First Component</MenuItem></Link>
               <Link to={'/gmap'}><MenuItem onClick={this.handleClose}>My GMap Component</MenuItem></Link>
+              <Link to={'/addressregister'}><MenuItem onClick={this.handleClose}>AddressRegister</MenuItem></Link>              
             </Drawer>
 
             <Route exact path="/" component={wellcome}/>
             <Route path="/link1" component={link1Component} />
             <Route path="/gmap" component={MyGMapComponent} />
+            <Route path="/addressregister" component={AddressRegister} />
           </div>
         </BrowserRouter>
       </MuiThemeProvider>
